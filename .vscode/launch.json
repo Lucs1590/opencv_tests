@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["--image","img/img_test.png", "--width", "5"]
+            // "args": ["--image","img/img_test.png", "--width", "5"]
         }
 
     ]
