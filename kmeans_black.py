@@ -1,7 +1,10 @@
 import cv2
 import numpy as np
 import utils as ut
+import operator
 from matplotlib import pyplot as plt
+from functools import reduce
+from sklearn.cluster import KMeans
 
 
 def black_back(img, coord):
@@ -14,30 +17,23 @@ def black_back(img, coord):
     return img
 
 
-def color_filter(img, color, diff):
-    boundaries_one = [([color[2]-diff, color[1]-diff, color[0]-diff],
-                       [color[2]+diff, color[1]+diff, color[0]+diff])]
-    for (lower, upper) in boundaries_one:
-        lower = np.array(lower, dtype=np.uint8)
-        upper = np.array(upper, dtype=np.uint8)
-        mask = cv2.inRange(img, lower, upper)
-        output = cv2.bitwise_and(img, img, mask=mask)
-
-        ratio_green = cv2.countNonZero(mask)/(img.size/3)
-        background = (mask.size - cv2.countNonZero(mask)) / (img.size/3)
-        print('pixels pretos: {}'.format(np.round(background*100, 2)))
-        print('pixels coloridos: {}'.format(np.round(ratio_green*100, 2)))
-        return ut.resize(output)
+def toKmeans(img, clusters):
+    ut.img_plot(img)
+    img = img.reshape((img.shape[0] * img.shape[1], 3))
+    clt = KMeans(clusters)
+    clt.fit(img)
+    hist = ut.centroid_histogram(clt)
+    bar, porcentagens = ut.plot_colors(hist, clt.cluster_centers_)
+    return bar, porcentagens
 
 
 img = '/home/brito/Documentos/Dev/tcc/img/f1.jpeg'
 img = cv2.imread(img)
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 rect = (430, 196, 800, 310)
+clusters = 3
 
-green = [57, 79, 42] #RGB
-dark_green = [21, 34, 20]
-rust = [99, 90, 20]
-diff = 20
-
-cv2.imshow("Img", color_filter(black_back(img, rect), rust, diff))
-cv2.waitKey(0)
+bar, porcentagens = toKmeans(black_back(img, rect), clusters)
+print("Folha + Doença: ", reduce(operator.add, porcentagens))
+ut.img_plot(bar)
+ut.img_show()

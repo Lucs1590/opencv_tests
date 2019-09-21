@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from matplotlib import pyplot as plt
 
 
 def resize(img, scale_percent=50):
@@ -46,3 +47,13 @@ def plot_colors(hist, centroids):
                       color.astype("uint8").tolist(), -1)
         startX = endX
     return bar, porcentagens
+
+
+def img_plot(img):
+    plt.figure()
+    plt.axis("off")
+    plt.imshow(img)
+
+
+def img_show():
+    plt.show()
