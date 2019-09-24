@@ -34,6 +34,9 @@ rect = (430, 196, 800, 310)
 clusters = 3
 
 bar, porcentagens = toKmeans(black_back(img, rect), clusters)
-print("Folha + Doença: ", reduce(operator.add, porcentagens))
+contaminacao = (porcentagens[-1]*100)/reduce(operator.add, porcentagens)
+print(porcentagens)
+print("Folha + Doença: {}".format(round(reduce(operator.add, porcentagens), 2)))
+print("Contaminação de {}%".format(round(contaminacao, 2)))
 ut.img_plot(bar)
 ut.img_show()
