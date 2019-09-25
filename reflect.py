@@ -22,4 +22,4 @@ for i in range(0, cols):
 # cv2.imshow("Frame 1", ut.resize(frame))
 frame = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
 cv2.imshow("Frame 2", ut.resize(frame))
-cv2.waitKey(30000)
+cv2.waitKey(0)
