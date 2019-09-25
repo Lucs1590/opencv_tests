@@ -1,0 +1,12 @@
+img = '/home/brito/Documentos/Dev/tcc/img/bicho.jpg'
+rect = (82, 51, 1118, 620)  # (x,y,w,h)
+[27.93, 26.14]
+58 77 47
+80 99 60
+
+
+img = '/home/brito/Documentos/Dev/tcc/img/f1.jpeg'
+rect = (430, 196, 800, 310)
+[13.28, 2.84]
+42 63 15
+94 108 57
