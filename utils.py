@@ -89,3 +89,12 @@ def color_filter(img, color, diff):
         print('pixels verdes: {}'.format(np.round(ratio_green*100, 2)))
         return resize(output)
         # return np.hstack([ut.resize(img), ut.resize(output)])
+
+
+def to_Transparent(img):
+    tmp = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, alpha = cv2.threshold(tmp, 0, 255, cv2.THRESH_BINARY)
+    b, g, r = cv2.split(img)
+    rgba = [b, g, r, alpha]
+    dst = cv2.merge(rgba, 4)
+    cv2.imwrite("test.png", dst)
