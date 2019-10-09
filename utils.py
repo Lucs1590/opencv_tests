@@ -11,20 +11,11 @@ def resize(img, scale_percent=50):
     return resized
 
 
-def toSaturation(img):
-    hue, saturation, value = cv2.split(img)
-    return saturation
-
-
-def toThreshold(sat):
-    retval, thresholded = cv2.threshold(
-        sat, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    return thresholded
-
-
-def toMedian(thresh):
-    medianFiltered = cv2.medianBlur(thresh, 5)
-    return medianFiltered
+def toHSV(img):
+    hsv = 0
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    H, S, V = cv2.split(img)
+    return V
 
 
 def centroid_histogram(clt):
