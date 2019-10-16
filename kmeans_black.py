@@ -10,7 +10,7 @@ from sklearn.cluster import KMeans
 def toKmeans(img, clusters):
     ut.img_plot(img)
     img = img.reshape((img.shape[0] * img.shape[1], 3))
-    clt = KMeans(n_clusters=clusters)
+    clt = KMeans(n_clusters=clusters, precompute_distances=True)
     clt.fit(img)
     hist = ut.centroid_histogram(clt)
     bar, porcentagens = ut.plot_colors(hist, clt.cluster_centers_)
