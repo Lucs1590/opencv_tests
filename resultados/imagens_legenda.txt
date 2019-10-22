@@ -1,0 +1,20 @@
+Figura x: Exemplo de funcionamento do SSD
+Fonte: Liu et al. (2016)
+
+Figura x: Resultado do GrabCut
+Fonte: Autores
+
+Figura x: Imagem original e imagem colorida 
+Fonte: Autores
+
+Figura y: Contagem de pixels a partir da ferramenta GIMP
+Fonte: Autores
+
+Figura x: Imagem demarcando a mesclagem das cores na ferramenta GIMP
+Fonte: Autores
+
+Figura x: Fluxograma de funcionamento da plataforma
+Fonte: Autores
+
+Figura X : Detecção de ferrugem e bicho mineiro por meio do modelo treinado.
+Fonte: Autores
