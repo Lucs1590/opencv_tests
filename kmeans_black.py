@@ -10,14 +10,14 @@ from sklearn.cluster import KMeans
 def toKmeans(img, clusters):
     ut.img_plot(img)
     img = img.reshape((img.shape[0] * img.shape[1], 3))
-    clt = KMeans(n_clusters=clusters, precompute_distances=True)
+    clt = KMeans(n_clusters=clusters)
     clt.fit(img)
     hist = ut.centroid_histogram(clt)
     bar, porcentagens = ut.plot_colors(hist, clt.cluster_centers_)
     return bar, porcentagens
 
 
-img = '/home/brito/Documentos/Dev/tcc/img/f1.jpeg'
+img = '/home/brito/Documentos/Dev/tcc/resultados/f1_b.png'
 img = cv2.imread(img)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 rect = (430, 196, 800, 310)
