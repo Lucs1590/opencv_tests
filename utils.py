@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
+from functools import reduce
+import operator
+import collections
 
 
 def resize(img, scale_percent=50):
@@ -27,16 +30,15 @@ def centroid_histogram(clt):
 
 
 def plot_colors(hist, centroids):
+    hist, centroids = organizarCorArray(hist, centroids)
     porcentagens = []
     bar = np.zeros((50, 300, 3), dtype="uint8")
-    hist[::-1].sort()
     startX = 0
     for (percent, color) in zip(hist, centroids):
-        if color.astype("uint8").tolist() != [0, 0, 0]:
+        if color != [0, 0, 0]:
             porcentagens.append(round(percent*100, 2))
         endX = startX + (percent * 300)
-        cv2.rectangle(bar, (int(startX), 0), (int(endX), 50),
-                      color.astype("uint8").tolist(), -1)
+        cv2.rectangle(bar, (int(startX), 0), (int(endX), 50), color, -1)
         startX = endX
     return bar, porcentagens
 
@@ -91,3 +93,20 @@ def to_Transparent(img):
     rgba = [b, g, r, alpha]
     dst = cv2.merge(rgba, 4)
     cv2.imwrite("test.png", dst)
+
+
+def organizarCorArray(hist, centroids):
+    aux = {}
+    final_val = {}
+    cores = []
+    percents = []
+    for (percent, color) in zip(hist, centroids):
+        aux[reduce(operator.add, color.astype(
+            "uint8").tolist())] = percent
+        final_val[reduce(operator.add, color.astype(
+            "uint8").tolist())] = color.astype("uint8").tolist()
+    aux = collections.OrderedDict(sorted(aux.items()))
+    for k, v in aux.items():
+        cores.append(final_val[k])
+        percents.append(v)
+    return percents, cores
