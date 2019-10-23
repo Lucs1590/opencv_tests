@@ -29,6 +29,7 @@ def centroid_histogram(clt):
 def plot_colors(hist, centroids):
     porcentagens = []
     bar = np.zeros((50, 300, 3), dtype="uint8")
+    hist[::-1].sort()
     startX = 0
     for (percent, color) in zip(hist, centroids):
         if color.astype("uint8").tolist() != [0, 0, 0]:
