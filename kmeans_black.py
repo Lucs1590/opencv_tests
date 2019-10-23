@@ -17,10 +17,10 @@ def toKmeans(img, clusters):
     return bar, porcentagens
 
 
-img = '/home/brito/Documentos/Dev/tcc/resultados/f1_b.png'
+img = '/home/brito/Documentos/Dev/tcc/resultados/f2_v.png'
 img = cv2.imread(img)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-rect = (430, 196, 800, 310)
+rect = (80,99,1172,565)
 clusters = 3
 
 bar, porcentagens = toKmeans(ut.black_back(img, rect), clusters)
