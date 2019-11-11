@@ -17,11 +17,11 @@ def toKmeans(img, clusters):
     return bar, porcentagens
 
 
-img = '/home/brito/Documentos/Dev/tcc/resultados/f1_b.png'
+img = '/home/brito/Documentos/Dev/tcc/resultados/f1_v.png'
 img = cv2.imread(img)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 rect = (430, 196, 800, 310)
-clusters = 3
+clusters = 5
 
 bar, porcentagens = toKmeans(ut.black_back(img, rect), clusters)
 contaminacao = (porcentagens[-1]*100)/reduce(operator.add, porcentagens)
