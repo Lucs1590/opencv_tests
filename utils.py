@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 from functools import reduce
 import operator
 import collections
+from sklearn.cluster import KMeans
 
 
 def resize(img, scale_percent=50):
@@ -110,3 +111,13 @@ def organizarCorArray(hist, centroids):
         cores.append(final_val[k])
         percents.append(v)
     return percents, cores
+
+
+def toKmeans(img, clusters):
+    img_plot(img)
+    img = img.reshape((img.shape[0] * img.shape[1], 3))
+    clt = KMeans(n_clusters=clusters)
+    clt.fit(img)
+    hist = centroid_histogram(clt)
+    bar, porcentagens = plot_colors(hist, clt.cluster_centers_)
+    return bar, porcentagens
