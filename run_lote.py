@@ -1,14 +1,23 @@
 import os
 import glob
 from kmeans_remove_background import KMeansClass
+import csv
 
 
 def main():
     caminho = "resultados/imagens_oficiais"
-
-    for arquivo in glob.glob(os.path.join(caminho, "*.png")):
-        i = get_image_rect(arquivo)
-        KMeansClass().runKmeans(arquivo, i, 5)
+    nome = "teste_x"
+    path = os.getcwd()
+    os.makedirs(nome)
+    os.chdir(nome)
+    with open('{}.csv'.format(nome), mode='w') as csv_file:
+        csv_writer = csv.writer(
+            csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        os.chdir(path)
+        for arquivo in glob.glob(os.path.join(caminho, "*.png")):
+            i = get_image_rect(arquivo)
+            resposta = KMeansClass().runKmeans(arquivo, i, 5)
+            csv_writer.writerow(resposta)
 
 
 def get_image_rect(arquivo_name):
@@ -34,7 +43,7 @@ def get_image_rect(arquivo_name):
         "19": (443, 193, 734, 349),
         "20": (158, 32, 1023, 526)
     }
-    number = arquivo_name.split("/")[-1].split("_")[0].replace("f","")
+    number = arquivo_name.split("/")[-1].split("_")[0].replace("f", "")
     return rects[number]
 
 
