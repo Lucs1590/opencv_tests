@@ -16,8 +16,8 @@ class KMeansClass(object):
         bar, porcentagens = ut.toKmeans(ut.black_back(img, rect), clusters)
         contaminacao = (porcentagens[-1]*100) / \
             reduce(operator.add, porcentagens)
-        print(porcentagens)
-        print("Folha + Doença: {}".format(round(reduce(operator.add, porcentagens), 2)))
-        print("Contaminação de {}%".format(round(contaminacao, 2)))
-        ut.img_plot(bar)
-        ut.img_show()
+        folha_doenca = round(reduce(operator.add, porcentagens), 2)
+        # print(porcentagens)
+        # print("Folha + Doença: {}".format(round(reduce(operator.add, porcentagens), 2)))
+        # print("Contaminação de {}%".format(round(contaminacao, 2)))
+        return [folha_doenca, contaminacao]
