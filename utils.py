@@ -5,6 +5,7 @@ from functools import reduce
 import operator
 import collections
 from sklearn.cluster import KMeans
+import os
 
 
 def resize(img, scale_percent=50):
@@ -114,7 +115,7 @@ def organizarCorArray(hist, centroids):
 
 
 def toKmeans(img, clusters):
-    img_plot(img)
+    # img_plot(img)
     img = img.reshape((img.shape[0] * img.shape[1], 3))
     clt = KMeans(n_clusters=clusters)
     clt.fit(img)
