@@ -2,9 +2,11 @@ import os
 import glob
 from kmeans_remove_background import KMeansClass
 import csv
+import datetime
 
 
 def main():
+    print(datetime.datetime.now())
     caminho = "resultados/imagens_oficiais"
     nome = "teste_x"
     path = os.getcwd()
@@ -18,6 +20,7 @@ def main():
             i = get_image_rect(arquivo)
             resposta = KMeansClass().runKmeans(arquivo, i, 5)
             csv_writer.writerow(resposta)
+        print(datetime.datetime.now())
 
 
 def get_image_rect(arquivo_name):
