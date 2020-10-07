@@ -12,6 +12,6 @@ img_y_cr_cb_eq = cv2.merge((y_eq, cr, cb))
 img_rgb_eq = cv2.cvtColor(img_y_cr_cb_eq, cv2.COLOR_YCR_CB2BGR)
 
 cv2.imshow("Original", img)
-cv2.imshow("Equalized", img_y_cr_cb_eq)
+cv2.imshow("Equalized", img_rgb_eq)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
